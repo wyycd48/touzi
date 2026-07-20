@@ -73,20 +73,62 @@
   .total-bar { background:linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:20px 24px; margin-top:20px; display:flex; flex-wrap:wrap; gap:24px; font-size:13px; color:var(--text2); }
   .total-bar strong { color:#ffd700; font-size:20px; }
   .total-bar .divider { color:#333; }
-  @media (max-width:768px) {
-    .header .brand h1 { font-size:14px; }
-    .header .meta { display:none; }
-    .scene-bar { padding:0 8px; gap:4px; height:40px; }
-    .scene-btn { padding:4px 10px; font-size:11px; }
-    .content { padding:8px; padding-top:56px; }
-    .shot-table thead th { font-size:10px; padding:6px 4px; }
-    .shot-table tbody td { padding:6px; font-size:12px; }
-    .shot-table th.action { min-width:140px; }
-    .shot-table th.dialog { min-width:110px; }
-    .shot-table th.notes { min-width:70px; }
-    .scene-header { padding:12px 14px; }
-    .scene-header .info { gap:8px; font-size:12px; }
-    .total-bar { gap:12px; padding:14px 16px; }
+    @media (max-width: 768px) {
+    :root { --header-height: 48px; }
+    body { padding-top: 48px; }
+    .header { height: 48px; padding: 0 12px; }
+    .header .brand h1 { font-size: 14px; letter-spacing: 1px; }
+    .header .brand .sub { display: none; }
+    .header .meta { display: none; }
+    .scene-bar { top: 48px; height: 36px; padding: 0 6px; gap: 3px; }
+    .scene-bar::-webkit-scrollbar { height: 0; }
+    .scene-btn { padding: 4px 8px; font-size: 11px; min-height: 28px; display: flex; align-items: center; }
+    .scene-btn .loc { display: none; }
+    .content { padding: 6px; padding-top: 48px; }
+    .scene-header { padding: 10px; margin-bottom: 8px; }
+    .scene-header .scene-id { font-size: 12px; }
+    .scene-header .info { gap: 4px; font-size: 11px; }
+    .scene-header .desc { font-size: 12px; line-height: 1.5; padding-top: 6px; }
+    .beat-card { padding: 10px 12px; margin-bottom: 10px; }
+    .beat-card .title { font-size: 12px; }
+    .beat-card .desc { font-size: 11px; line-height: 1.5; }
+    .shot-table thead th { top: 84px; padding: 4px 3px; font-size: 9px; letter-spacing: 0; white-space: normal; }
+    .shot-table th.id { width: 26px; min-width: 26px; }
+    .shot-table th.type { width: 32px; min-width: 32px; }
+    .shot-table th.cam { width: 32px; min-width: 32px; }
+    .shot-table th.dur { width: 28px; min-width: 28px; }
+    .shot-table th.action { min-width: 100px; }
+    .shot-table th.dialog { min-width: 80px; }
+    .shot-table th.notes { min-width: 40px; }
+    .shot-table tbody td { padding: 4px 3px; font-size: 11px; line-height: 1.35; }
+    .shot-table td.id { width: 26px; font-size: 10px; }
+    .badge { font-size: 9px; padding: 1px 4px; }
+    .cam-badge { font-size: 9px; padding: 1px 3px; }
+    .dur-badge { font-size: 11px; }
+    .dialog { font-size: 11px; }
+    .vo { font-size: 11px; }
+    .sfx { font-size: 10px; }
+    .notes { font-size: 10px; }
+    .scene-break { padding: 10px 0 16px; font-size: 10px; }
+    .total-bar { gap: 6px; padding: 10px 12px; font-size: 11px; }
+    .total-bar strong { font-size: 15px; }
+    .total-bar .divider { display: none; }
+  }
+  @media (max-width: 480px) {
+    .scene-btn { padding: 3px 6px; font-size: 10px; }
+    .shot-table thead th { font-size: 8px; padding: 3px 2px; }
+    .shot-table tbody td { padding: 3px 2px; font-size: 10px; }
+    .shot-table th.action { min-width: 80px; }
+    .shot-table th.dialog { min-width: 60px; }
+    .shot-table th.notes { min-width: 30px; }
+    .badge { font-size: 8px; padding: 1px 3px; }
+    .cam-badge { font-size: 8px; padding: 0 2px; }
+    .scene-header .scene-id { font-size: 11px; }
+    .scene-header .info { font-size: 10px; }
+  }
+  @media (pointer: coarse) {
+    .scene-btn { min-height: 32px; }
+  }
   }
   @media print { body { background:#fff; color:#333; padding-top:0; } .header, .scene-bar { position:static; } .content { padding-top:0; } .shot-table thead th { position:static; } }
   @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
