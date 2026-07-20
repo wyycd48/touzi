@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《修车逆袭》第1集 · 电影级分镜</title>
+<style>
+  :root { --accent: #e94560; --accent2: #ffd700; --bg: #0d0d1a; --bg2: #1a1a2e; --text: #e0e0e0; --text2: #999; --header-height: 60px; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); min-height:100vh; padding-top:var(--header-height); }
+  ::-webkit-scrollbar { width:6px; height:6px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:#444; border-radius:3px; }
+  .header { position:fixed; top:0; left:0; right:0; z-index:100; height:60px; background:linear-gradient(135deg,#0d0d1a,#1a1a3e); display:flex; align-items:center; justify-content:space-between; padding:0 24px; border-bottom:1px solid rgba(255,255,255,0.08); backdrop-filter:blur(12px); }
+  .header .brand h1 { font-size:18px; font-weight:700; background:linear-gradient(90deg,#e94560,#ffd700); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:3px; }
+  .header .brand .sub { font-size:11px; color:#666; letter-spacing:2px; margin-top:2px; }
+  .header .meta { display:flex; gap:16px; font-size:12px; color:#aaa; }
+  .stat-badge { display:inline-flex; align-items:center; gap:4px; background:rgba(255,255,255,0.06); padding:4px 14px; border-radius:12px; font-size:12px; }
+  .scene-bar { position:fixed; top:60px; left:0; right:0; z-index:99; height:44px; display:flex; align-items:center; gap:4px; background:#12122a; padding:0 16px; border-bottom:1px solid rgba(255,255,255,0.05); overflow-x:auto; }
+  .scene-bar::-webkit-scrollbar { height:2px; }
+  .scene-btn { flex-shrink:0; padding:6px 16px; border-radius:6px; font-size:12px; font-weight:500; color:#666; cursor:pointer; transition:all .2s; white-space:nowrap; border:1px solid transparent; }
+  .scene-btn:hover { color:#aaa; background:rgba(255,255,255,0.04); }
+  .scene-btn.active { color:#ffd700; border-color:rgba(255,215,0,0.3); background:rgba(255,215,0,0.06); }
+  .scene-btn .loc { color:#555; font-weight:400; }
+  .content { max-width:1400px; margin:0 auto; padding:16px; padding-top:60px; }
+  .scene-header { background:linear-gradient(135deg,rgba(233,69,96,0.08),rgba(255,215,0,0.04)); border-left:4px solid #e94560; border-radius:0 8px 8px 0; padding:16px 20px; margin-bottom:16px; }
+  .scene-header .scene-id { font-size:13px; font-weight:700; color:#e94560; letter-spacing:1px; margin-bottom:8px; }
+  .scene-header .info { display:flex; flex-wrap:wrap; gap:16px; font-size:13px; color:var(--text2); margin-bottom:8px; }
+  .scene-header .info .label { color:#ccc; }
+  .scene-header .desc { font-size:13px; color:#888; line-height:1.7; border-top:1px solid rgba(255,255,255,0.05); padding-top:10px; }
+  .beat-card { background:linear-gradient(135deg,rgba(233,69,96,0.06),rgba(255,215,0,0.03)); border:1px solid rgba(255,215,0,0.1); border-radius:10px; padding:20px 24px; margin-bottom:20px; }
+  .beat-card .title { font-size:14px; font-weight:700; color:#ffd700; margin-bottom:6px; letter-spacing:1px; }
+  .beat-card .desc { font-size:13px; color:#999; line-height:1.7; }
+  .shot-table { width:100%; border-collapse:separate; border-spacing:0 4px; margin-bottom:12px; }
+  .shot-table thead th { position:sticky; top:104px; z-index:10; background:#0d0d1a; padding:10px; font-size:11px; color:#555; letter-spacing:1px; font-weight:600; border-bottom:1px solid rgba(255,255,255,0.06); text-align:left; white-space:nowrap; }
+  .shot-table th.id { width:48px; text-align:center; }
+  .shot-table th.type { width:56px; text-align:center; }
+  .shot-table th.cam { width:56px; text-align:center; }
+  .shot-table th.dur { width:48px; text-align:center; }
+  .shot-table th.action { min-width:260px; }
+  .shot-table th.dialog { min-width:200px; }
+  .shot-table th.notes { min-width:120px; }
+  .shot-table tbody tr { background:rgba(255,255,255,0.02); border-radius:6px; transition:background .15s; }
+  .shot-table tbody tr:hover { background:rgba(255,255,255,0.05); }
+  .shot-table tbody td { padding:10px; font-size:13px; line-height:1.6; vertical-align:top; }
+  .shot-table td.id { text-align:center; color:#e94560; font-weight:700; font-size:13px; width:48px; }
+  .shot-table td.type { text-align:center; width:56px; }
+  .shot-table td.cam { text-align:center; width:56px; }
+  .shot-table td.dur { text-align:center; width:48px; }
+  .badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600; letter-spacing:.5px; }
+  .badge-远景 { background:#2d3436; color:#ddd; }
+  .badge-全景 { background:#636e72; color:#fff; }
+  .badge-中景 { background:#0984e3; color:#fff; }
+  .badge-近景 { background:#6c5ce7; color:#fff; }
+  .badge-特写 { background:#e17055; color:#fff; }
+  .badge-大特写 { background:#d63031; color:#fff; }
+  .cam-badge { display:inline-block; padding:2px 6px; border-radius:3px; font-size:11px; font-weight:500; }
+  .cam-固定 { background:#2d3436; color:#aaa; }
+  .cam-推 { background:#0984e3; color:#fff; }
+  .cam-拉 { background:#6c5ce7; color:#fff; }
+  .cam-摇 { background:#00b894; color:#fff; }
+  .cam-移 { background:#e17055; color:#fff; }
+  .cam-跟 { background:#d63031; color:#fff; }
+  .cam-手持 { background:#f39c12; color:#333; }
+  .cam-升降 { background:#a29bfe; color:#fff; }
+  .dur-badge { color:#ffd700; font-weight:600; font-size:13px; }
+  .dialog { color:#fdcb6e; font-style:italic; font-size:12.5px; }
+  .vo { color:#74b9ff; font-style:italic; font-size:12.5px; }
+  .sfx { color:#55efc4; font-size:12px; }
+  .notes { color:#777; font-size:12px; line-height:1.5; }
+  .scene-break { display:flex; align-items:center; justify-content:center; padding:24px 0 32px; gap:12px; color:#333; font-size:12px; letter-spacing:3px; }
+  .scene-break::before, .scene-break::after { content:''; flex:1; height:1px; background:rgba(255,255,255,0.04); }
+  .total-bar { background:linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:20px 24px; margin-top:20px; display:flex; flex-wrap:wrap; gap:24px; font-size:13px; color:var(--text2); }
+  .total-bar strong { color:#ffd700; font-size:20px; }
+  .total-bar .divider { color:#333; }
+  @media (max-width:768px) {
+    .header .brand h1 { font-size:14px; }
+    .header .meta { display:none; }
+    .scene-bar { padding:0 8px; gap:4px; height:40px; }
+    .scene-btn { padding:4px 10px; font-size:11px; }
+    .content { padding:8px; padding-top:56px; }
+    .shot-table thead th { font-size:10px; padding:6px 4px; }
+    .shot-table tbody td { padding:6px; font-size:12px; }
+    .shot-table th.action { min-width:140px; }
+    .shot-table th.dialog { min-width:110px; }
+    .shot-table th.notes { min-width:70px; }
+    .scene-header { padding:12px 14px; }
+    .scene-header .info { gap:8px; font-size:12px; }
+    .total-bar { gap:12px; padding:14px 16px; }
+  }
+  @media print { body { background:#fff; color:#333; padding-top:0; } .header, .scene-bar { position:static; } .content { padding-top:0; } .shot-table thead th { position:static; } }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+  .shot-table tbody tr { animation:fadeUp .35s ease forwards; }
+</style>
+</head>
+<body>
+<div class="header"><div class="brand"><h1>《修车逆袭》第1集 · 分镜本</h1><div class="sub">横屏短剧 · 电影级分镜 · 节奏版</div></div><div class="meta"><span class="stat-badge" id="totalShots"></span><span class="stat-badge" id="totalDuration"></span></div></div>
+<div class="scene-bar" id="sceneBar"></div>
+<div class="content" id="content"></div>
+<script>
+const S=[
+{id:'一',title:'初遇 · 压榨开局',loc:'日内 · 修车店大厅',desc:'李乘风来到表哥刘芒的修车店打工。刘芒翘着二郎腿开出剥削条件——计件制，修一辆只给三成修理费。',beat:'第一幕：交代人物关系与社会地位差。刘芒的傲慢与李乘风的隐忍形成鲜明对比。',shots:[
+{id:1,type:'远景',cam:'固定',dur:3,a:'午后。城市边缘一条老街上，修车店歪斜的招牌在风中微微晃动。李乘风背着旧书包从远处走来，身影在逆光中拉长。',d:'',n:'环境音：蝉鸣、远处车流'},
+{id:2,type:'全景',cam:'横移',dur:4,a:'镜头跟随李乘风穿过堆满轮胎和零件的工位。刘芒翘着二郎腿坐在老板椅上，眯着眼打量来人。',d:'',n:'一镜到底跟拍，带入环境'},
+{id:3,type:'近景',cam:'固定',dur:3,a:'刘芒歪着头，嘴里叼着牙签，从上到下打量李乘风，眼神带着轻蔑和算计。',d:'刘芒（不耐烦）：想来我这里打工？成，但只能按计件，修一辆给你三成修理费。',n:'光线从刘芒背后打来'},
+{id:4,type:'中景',cam:'固定',dur:3,a:'李乘风连忙点头鞠躬，姿态谦卑。他抬起头时眼神里有光。',d:'李乘风：表哥放心，我学的就是机电工程和机械制造，肯定干好。',n:''},
+{id:5,type:'特写',cam:'推',dur:2,a:'刘芒吐出牙签，皮笑肉不笑地点头。牙签落在肮脏的地板上。',d:'',n:'牙签落地的清脆声'},
+]},
+{id:'二',title:'出手 · 技惊四座',loc:'日内 · 修车店工位',desc:'一台高端仿赛摩托被推进工位，几位师傅束手无策。李乘风主动上前，凭借扎实的专业功底成功修复。',beat:'第二幕：主角高光时刻。专业技能的展示让观众建立对主角的信任与好感。',shots:[
+{id:1,type:'全景',cam:'摇',dur:3,a:'一辆流光银的高端仿赛摩托被推进工位。几位修车师傅围上来，纷纷摇头。',d:'师傅甲：不行，这活儿咱们店干不了。',n:'摩托LOGO划过画面'},
+{id:2,type:'中景',cam:'固定',dur:2,a:'李乘风放下抹布，擦了擦手，安静地走到仿赛旁。',d:'',n:'众人目光聚集'},
+{id:3,type:'特写',cam:'推',dur:3,a:'李乘风俯身靠近发动机，目光沿着并列气缸的金属表面移动。眼神专注而沉静。',d:'李乘风VO：这车我在教材里见过，电控油门，六档变速……',n:'心跳声bgm渐强'},
+{id:4,type:'大特写',cam:'固定',dur:3,a:'手指灵巧地拆开整流罩侧面螺丝。动作精准流畅，像外科医生的手术刀。',d:'',n:'SFX：金属碰撞声'},
+{id:5,type:'中景',cam:'升降',dur:4,a:'镜头从低处缓慢升起。李乘风半跪在摩托车旁，双手在发动机舱内交替操作。汗水渗出额头。',d:'',n:'从低机位升到平视'},
+{id:6,type:'近景',cam:'固定',dur:2,a:'李乘风将整流罩卡回原位，按下卡扣发出"咔嗒"一声。',d:'',n:'SFX：卡扣咬合声'},
+{id:7,type:'特写',cam:'推',dur:2,a:'手握住油门把手缓缓转动。仪表盘指针瞬间弹起。',d:'',n:'转速攀升'},
+{id:8,type:'全景',cam:'固定',dur:3,a:'发动机发出一声低沉的嘶吼，排气管喷出一股气流。整台仿赛微微震颤。师傅们集体后退一步。',d:'',n:'SFX：引擎咆哮 震撼低音'},
+{id:9,type:'近景',cam:'固定',dur:3,a:'李乘风攥紧扳手，手背上青筋浮现。嘴角浮起一丝笑意。',d:'李乘风VO：修好了！一天工资就都有了！',n:'青年人的力量感'},
+]},
+{id:'三',title:'赞许 · 晴天霹雳',loc:'日内 · 修车店工位',desc:'付友被深深折服，正要慷慨付款。就在这时，李乘风接到小妹电话——母亲摔断了腿。',beat:'第三幕：希望与绝望的转折。刚看到曙光的李乘风被生活的重击打回现实。',shots:[
+{id:1,type:'中景',cam:'跟',dur:3,a:'付友快步走到车前，摸了摸发动机，满脸不可置信。',d:'付友（惊讶）：卧槽，你真修好了？我这车去了好几个地方人家都说没法修。',n:''},
+{id:2,type:'近景',cam:'固定',dur:2,a:'李乘风擦去汗水，露出腼腆而真诚的笑容。白T恤已被油污染成灰色。',d:'李乘风（微笑）：付哥，我给您换了个点火线圈，ECU也重新刷了一遍。',n:'汗水沿下颌滴落'},
+{id:3,type:'中景',cam:'固定',dur:3,a:'付友拍李乘风肩膀，掏出手机要扫码。老张咳嗽一声，指了指里间。',d:'付友：牛啊兄弟！多少钱你说个数！<br>老张：结账找我们老板。',n:''},
+{id:4,type:'全景',cam:'固定',dur:2,a:'付友朝办公室走去。李乘风蹲下收拾工具。',d:'',n:'短暂的平静过渡'},
+{id:5,type:'特写',cam:'固定',dur:2,a:'口袋里手机突然震动，嗡嗡声在安静的车间里格外清晰。',d:'',n:'振动音效 预示不祥'},
+{id:6,type:'特写',cam:'推',dur:2,a:'手指滑过布满裂纹的碎屏。来电显示：小妹 李梅。',d:'',n:'碎屏特写 传递窘迫'},
+{id:7,type:'近景',cam:'推',dur:3,a:'李乘风接起电话，表情从随意到僵硬。妹妹的哭腔传来。',d:'李梅VO（哭腔）：哥……咱妈腿摔断了……',n:'镜头缓慢推近'},
+{id:8,type:'中景',cam:'固定',dur:2,a:'李乘风猛然站起，扳手咣当掉在地上。师傅们纷纷转头。',d:'李乘风（失声）：什么？！',n:'SFX：金属落地声'},
+]},
+{id:'四',title:'讨薪 · 翻脸无情',loc:'日内 · 修车店办公室',desc:'李乘风走进办公室找表哥结算两个月工钱。刘芒盯着满屏绿色的股票行情，矢口否认计件承诺。',beat:'第四幕：高潮冲突。表哥的失信与冷酷将主角逼到绝境。',shots:[
+{id:1,type:'全景',cam:'固定',dur:3,a:'李乘风推开办公室玻璃门。刘芒背对门口坐在老板椅上，电脑屏幕泛着幽幽绿光。',d:'',n:'昏暗压抑的办公室氛围'},
+{id:2,type:'特写',cam:'推',dur:2,a:'股票交易界面如绿瀑布倾泻。绿色光影映照在刘芒脸上。',d:'',n:'绿色暗示贪婪与冷酷'},
+{id:3,type:'中景',cam:'固定',dur:3,a:'李乘风站在办公桌前，姿态拘谨但不卑不亢。',d:'李乘风：表哥，我在店里干了快两个月，想请你给结下工钱。',n:''},
+{id:4,type:'近景',cam:'固定',dur:2,a:'刘芒头也不抬，继续盯着屏幕。语气轻描淡写。',d:'刘芒：急啥，月底再说。',n:'极度的漠视'},
+{id:5,type:'近景',cam:'固定',dur:4,a:'李乘风喉结上下滚动。说到母亲病情时声音微微发颤。',d:'李乘风：我妈摔着了，粉碎性骨折。您说计件三成归我，三十多辆车……',n:'压抑的愤怒'},
+{id:6,type:'特写',cam:'固定',dur:2,a:'刘芒猛地放下茶杯，一声脆响。瞪大眼睛，表情变为不耐烦。',d:'刘芒：停停停！谁跟你说计件算钱了？',n:'茶杯撞击声'},
+{id:7,type:'中景',cam:'拉',dur:3,a:'刘芒往椅背上一靠，拉开抽屉取出薄薄一沓钞票扔在桌上。',d:'刘芒：按学徒工，一个月两千，两个月四千，现金。',n:'动作与台词形成反差'},
+{id:8,type:'特写',cam:'推',dur:3,a:'李乘风低头看着散落的钞票。手悬空片刻，缓缓伸向那堆钱。',d:'李乘风VO（气愤）：说好计件算钱，结果按学徒工发工资……表哥你心黑得没边了。',n:'内心独白与克制形成张力'},
+{id:9,type:'近景',cam:'固定',dur:3,a:'李乘风把钱拿起，一张一张地数。眉头越皱越紧。',d:'李乘风：表哥，这才3600，还少了四百。',n:''},
+{id:10,type:'近景',cam:'固定',dur:2,a:'刘芒理直气壮地歪着头，带着无赖的笑容。',d:'刘芒（不耐烦）：那是扣的伙食费，两个月饭钱。',n:'无赖姿态令人愤慨'},
+{id:11,type:'中景',cam:'摇',dur:2,a:'门口老张看到这一幕，摇着头低声嘀咕。',d:'老张（嘀咕）：人家孩子每天就买个白馍就咸菜吃……',n:'侧面烘托增强共情'},
+]},
+{id:'五',title:'忍辱 · 沉默的尊严',loc:'日内 · 办公室→店门口',desc:'面对表哥的欺负，李乘风沉默数秒。他想到医院里的母亲和哭泣的小妹。收起钱平静道谢，转身离开——没有回头。',beat:'第五幕：情感落点。主角选择沉默隐忍。克制比爆发更有力量，为下一集逆袭埋下期待。',shots:[
+{id:1,type:'特写',cam:'固定',dur:4,a:'李乘风沉默两秒。镜头对准眼睛——愤怒、屈辱、不甘，最终被责任压下去。眼神归于平静。',d:'李乘风VO：小梅还等着给妈交手术费。',n:'长镜头 微表情是关键'},
+{id:2,type:'大特写',cam:'固定',dur:3,a:'手将钞票一张张捋平、对齐，小心折叠放进上衣内侧口袋。轻轻拍了拍。',d:'',n:'压迫感通过慢动作传递'},
+{id:3,type:'近景',cam:'固定',dur:3,a:'抬起头直视刘芒。脸上没有愤怒没有悲伤，只有令人不寒而栗的平静。',d:'李乘风（平静）：行。谢谢表哥。',n:'平静之下是暗涌的愤怒'},
+{id:4,type:'近景',cam:'固定',dur:2,a:'刘芒靠在椅背上，双手交叉放在脑后，露出小人得志的笑容。',d:'刘芒（得意）：这才懂事嘛。',n:'反派嘴脸'},
+{id:5,type:'中景',cam:'固定',dur:3,a:'李乘风缓缓转身。在转身的瞬间咬了一下嘴唇——最后的情绪泄漏。然后牙关咬紧，背脊挺直。',d:'',n:''},
+{id:6,type:'全景',cam:'拉',dur:4,a:'一步一步走向门口。每一步沉稳而坚定。镜头拉远——推开玻璃门，门关上。没有回头。',d:'',n:'长镜头调度'},
+{id:7,type:'远景',cam:'固定',dur:3,a:'背影走出店门走进午后阳光里。身形在逆光中变成剪影，渐行渐远。',d:'',n:'BGM起 希望旋律'},
+{id:8,type:'特写',cam:'固定',dur:3,a:'口袋里的手隔着布料紧紧攥着那叠钞票。指骨因用力轮廓分明。但始终没有松开。',d:'',n:'最后一镜：手里的钱与希望'},
+]}
+];
+function r(){
+  let ts=0,td=0;
+  const sb=document.getElementById('sceneBar'),ct=document.getElementById('content');
+  S.forEach((s,i)=>{const b=document.createElement('div');b.className='scene-btn'+(i===0?' active':'');b.dataset.scene=i;b.innerHTML='场'+s.id+' '+s.title;b.onclick=()=>sw(i);sb.appendChild(b);});
+  S.forEach((s,si)=>{
+    const sd=document.createElement('div');sd.className='scene';sd.style.display=si===0?'block':'none';
+    if(s.beat){const bc=document.createElement('div');bc.className='beat-card';bc.innerHTML='<div class="title">'+s.title+' · 节奏要点</div><div class="desc">'+s.beat+'</div>';sd.appendChild(bc);}
+    const h=document.createElement('div');h.className='scene-header';
+    h.innerHTML='<div class="scene-id">场 '+s.id+' · '+s.title+'</div><div class="info"><span> <span class="label">'+s.loc+'</span></span><span> <span class="label">'+s.shots.length+' 镜</span></span><span> <span class="label">'+s.shots.reduce((a,b)=>a+b.dur,0)+'s</span></span></div><div class="desc">'+s.desc+'</div>';
+    sd.appendChild(h);
+    const t=document.createElement('table');t.className='shot-table';
+    t.innerHTML='<thead><tr><th class="id">镜号</th><th class="type">景别</th><th class="cam">运镜</th><th class="dur">时长</th><th class="action">画面描述</th><th class="dialog">对白/旁白</th><th class="notes">备注</th></tr></thead><tbody></tbody>';
+    const tb=t.querySelector('tbody');
+    s.shots.forEach((sh)=>{
+      const tr=document.createElement('tr');
+      let dh='',nh='';
+      if(sh.d){const ls=sh.d.split('<br>');ls.forEach(l=>{if(l.includes('VO'))dh+='<div class="vo"> '+l+'</div>';else if(l.trim())dh+='<div class="dialog"> '+l+'</div>';});}
+      if(sh.n){nh='<div class="'+(sh.n.includes('SFX')||sh.n.includes('音效')?'sfx':'notes')+'">'+sh.n+'</div>';}
+      tr.innerHTML='<td class="id">'+sh.id+'</td><td class="type"><span class="badge badge-'+sh.type+'">'+sh.type+'</span></td><td class="cam"><span class="cam-badge cam-'+sh.cam+'">'+sh.cam+'</span></td><td class="dur"><span class="dur-badge">'+sh.dur+'s</span></td><td>'+sh.a+'</td><td>'+dh+'</td><td>'+nh+'</td>';
+      tb.appendChild(tr);ts++;td+=sh.dur;
+    });
+    sd.appendChild(t);
+    const sp=document.createElement('div');sp.className='scene-break';sp.textContent='◆ 场 '+s.id+' 结束 ◆';sd.appendChild(sp);
+    ct.appendChild(sd);
+  });
+  const tb=document.createElement('div');tb.className='total-bar';
+  tb.innerHTML='<div><strong>本集总计</strong></div><div> '+ts+' 镜</div><div class="divider">|</div><div>约 <strong>'+td+'s</strong>（'+(td/60).toFixed(1)+' 分钟）</div><div class="divider">|</div><div> '+S.length+' 场戏</div>';
+  ct.appendChild(tb);
+  document.getElementById('totalShots').innerHTML=' '+ts+' 镜';
+  document.getElementById('totalDuration').innerHTML=' '+td+'s（'+(td/60).toFixed(1)+' 分钟）';
+}
+function sw(i){
+  document.querySelectorAll('.scene').forEach((s,j)=>{s.style.display=j===i?'block':'none';});
+  document.querySelectorAll('.scene-btn').forEach((b,j)=>{b.classList.toggle('active',j===i);});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
+    const a=document.querySelector('.scene-btn.active');
+    const ci=parseInt(a?.dataset.scene)||0;
+    const d=e.key==='ArrowRight'?1:-1;
+    const ni=Math.max(0,Math.min(S.length-1,ci+d));
+    if(ni!==ci)sw(ni);
+  }
+});
+r();
+</script>
+</body>
+</html>

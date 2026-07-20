@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>运营计划看板 · 2026年7月末</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;min-height:100vh;background-image:radial-gradient(circle at 10% 20%,rgba(79,70,229,.03),transparent 50%),radial-gradient(circle at 90% 80%,rgba(14,165,233,.03),transparent 50%)}
+.topbar{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid #e2e8f0;padding:14px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:100}
+.topbar .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:#1e293b;flex-shrink:0}
+.topbar .logo .icon{width:30px;height:30px;background:linear-gradient(135deg,#4f46e5,#0ea5e9);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+.topbar .date-badge{font-size:11px;color:#94a3b8;background:#f8fafc;padding:4px 12px;border-radius:20px;border:1px solid #e2e8f0}
+.topbar .nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.topbar .nav a{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;color:#64748b;text-decoration:none;transition:.2s;cursor:pointer}
+.topbar .nav a:hover,.topbar .nav a.active{background:rgba(79,70,229,.08);color:#4f46e5}
+.hero{background:linear-gradient(135deg,#1e293b 0%,#334155 50%,#0f172a 100%);padding:40px 28px 36px;color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;top:-30%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(79,70,229,.08),transparent 70%);border-radius:50%}
+.hero .d-actions{position:relative;z-index:1}
+.hero .badge{display:inline-block;background:rgba(255,255,255,.08);color:#a5b4fc;font-size:10px;font-weight:600;padding:3px 12px;border-radius:20px;letter-spacing:2px;margin-bottom:10px}
+.hero h1{font-size:26px;font-weight:900;letter-spacing:1px}
+.hero .sub{color:#94a3b8;font-size:13px;margin-top:4px}
+.hero .stat-row{display:flex;gap:32px;margin-top:16px;flex-wrap:wrap}
+.hero .stat-row .s-item{display:flex;align-items:baseline;gap:6px}
+.hero .stat-row .s-item .num{font-size:22px;font-weight:900;color:#fff}
+.hero .stat-row .s-item .lbl{font-size:11px;color:#94a3b8}
+.container{max-width:1400px;margin:0 auto;padding:20px 24px 60px}
+.section{margin-bottom:24px}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.section-header h2{font-size:15px;font-weight:700;color:#1e293b;display:flex;align-items:center;gap:8px}
+.section-header h2 .count{background:#e2e8f0;color:#64748b;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.card{background:#fff;border-radius:12px;padding:18px;border:1px solid #e2e8f0;transition:.2s}
+.card:hover{border-color:#cbd5e1;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.card .card-title{font-size:12px;font-weight:600;color:#64748b;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.card .card-value{font-size:28px;font-weight:900;color:#1e293b;line-height:1.2}
+.card .card-sub{font-size:11px;color:#94a3b8;margin-top:4px}
+.card .card-bar{height:4px;border-radius:2px;background:#e2e8f0;margin-top:10px;overflow:hidden}
+.card .card-bar .fill{height:100%;border-radius:2px;transition:width 1s}
+.card.blue .card-title{color:#2563eb}.card.blue .fill{background:linear-gradient(90deg,#2563eb,#60a5fa)}
+.card.green .card-title{color:#059669}.card.green .fill{background:linear-gradient(90deg,#059669,#34d399)}
+.card.orange .card-title{color:#d97706}.card.orange .fill{background:linear-gradient(90deg,#d97706,#fbbf24)}
+.card.purple .card-title{color:#7c3aed}.card.purple .fill{background:linear-gradient(90deg,#7c3aed,#a78bfa)}
+.kanban-lane{background:#f8fafc;border-radius:12px;padding:14px;border:1px solid #e2e8f0;min-height:120px}
+.kanban-lane .lane-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.kanban-lane .lane-header .lane-title{font-size:12px;font-weight:600;color:#64748b;display:flex;align-items:center;gap:6px}
+.kanban-lane .lane-header .lane-count{font-size:11px;background:#e2e8f0;color:#64748b;padding:1px 8px;border-radius:10px;font-weight:600}
+.kanban-item{background:#fff;border-radius:8px;padding:12px;border:1px solid #e2e8f0;margin-bottom:8px;transition:.15s}
+.kanban-item:last-child{margin-bottom:0}
+.kanban-item .ki-title{font-size:13px;font-weight:600;color:#1e293b}
+.kanban-item .ki-meta{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.kanban-item .ki-meta .tag{font-size:10px;padding:2px 8px;border-radius:4px;background:#f1f5f9;color:#64748b;font-weight:500}
+.kanban-item .ki-meta .tag.status-active{background:#dbeafe;color:#1d4ed8}
+.kanban-item .ki-meta .tag.status-warm{background:#fef3c7;color:#b45309}
+.kanban-item .ki-meta .tag.status-new{background:#dcfce7;color:#16a34a}
+.person-card{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0}
+.person-card .av{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;flex-shrink:0}
+.person-card .info{flex:1;min-width:0}
+.person-card .info .name{font-size:12px;font-weight:600;color:#1e293b}
+.person-card .info .role{font-size:10px;color:#94a3b8}
+.person-card .need{font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;flex-shrink:0}
+.person-card .need.high{background:#fef2f2;color:#dc2626}
+.person-card .need.med{background:#fef3c7;color:#b45309}
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:"";position:absolute;left:7px;top:0;bottom:0;width:2px;background:#e2e8f0}
+.timeline-item{position:relative;padding-bottom:20px}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-item .dot{position:absolute;left:-21px;top:3px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;z-index:1}
+.timeline-item .dot.done{background:#10b981}
+.timeline-item .dot.active{background:#3b82f6;box-shadow:0 0 0 4px rgba(59,130,246,.2);animation:pulse 2s infinite}
+.timeline-item .dot.pending{background:#cbd5e1}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(59,130,246,.4)}70%{box-shadow:0 0 0 8px rgba(59,130,246,0)}100%{box-shadow:0 0 0 0 rgba(59,130,246,0)}}
+.timeline-item .tl-date{font-size:10px;color:#94a3b8;font-weight:500}
+.timeline-item .tl-title{font-size:13px;font-weight:600;color:#1e293b;margin-top:2px}
+.timeline-item .tl-desc{font-size:11px;color:#64748b;margin-top:2px}
+.tagline-box{background:linear-gradient(135deg,#eef2ff,#f0f9ff);border:1px solid #c7d2fe;border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.tagline-box .t-icon{width:32px;height:32px;background:#4f46e5;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
+.tagline-box .t-text{flex:1;font-size:13px;color:#4338ca;font-weight:500}
+@media(max-width:768px){
+  .topbar{padding:10px 16px}
+  .hero{padding:28px 16px 24px}.hero h1{font-size:20px}
+  .hero .stat-row{gap:16px}
+  .container{padding:12px 12px 40px}
+  .grid-4,.grid-3,.grid-2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="logo"><div class="icon">📊</div><span>运营计划看板</span></div>
+  <div class="date-badge">2026.07.20 更新</div>
+  <div class="nav">
+    <a class="active" onclick="document.getElementById('overview').scrollIntoView({behavior:'smooth'})">概览</a>
+    <a onclick="document.getElementById('accounts').scrollIntoView({behavior:'smooth'})">账号状态</a>
+    <a onclick="document.getElementById('dept').scrollIntoView({behavior:'smooth'})">部门指标</a>
+    <a onclick="document.getElementById('staffing').scrollIntoView({behavior:'smooth'})">人员配置</a>
+    <a onclick="document.getElementById('timeline').scrollIntoView({behavior:'smooth'})">推进计划</a>
+  </div>
+</div>
+<div class="hero">
+  <div class="d-actions">
+    <div class="badge">📋 2026.07 月末更新</div>
+    <h1>7月末运营计划看板</h1>
+    <div class="sub">运营部 × 投流部 · 9账号全量铺量计划</div>
+    <div class="stat-row">
+      <div class="s-item"><span class="num">9</span><span class="lbl">启动号</span></div>
+      <div class="s-item"><span class="num">2</span><span class="lbl">活跃号</span></div>
+      <div class="s-item"><span class="num">2</span><span class="lbl">启动中</span></div>
+      <div class="s-item"><span class="num">+5</span><span class="lbl" style="color:#a5b4fc">冷启动计划</span></div>
+      <div class="s-item"><span class="num">0.8-1.0</span><span class="lbl">投放ROI</span></div>
+    </div>
+  </div>
+</div>
+<div class="container">
+<div class="section" id="overview">
+  <div class="section-header"><h2>📌 当前概览</h2></div>
+  <div class="grid-4">
+    <div class="card blue">
+      <div class="card-title">● 账号总数</div>
+      <div class="card-value">9</div>
+      <div class="card-sub">已启动运营号 · 不做垂类不关联</div>
+      <div class="card-bar"><div class="fill" style="width:100%"></div></div>
+    </div>
+    <div class="card green">
+      <div class="card-title">● 活跃号</div>
+      <div class="card-value">2</div>
+      <div class="card-sub">运营部 · 占总账号 22%</div>
+      <div class="card-bar"><div class="fill" style="width:22%"></div></div>
+    </div>
+    <div class="card orange">
+      <div class="card-title">● 启动中 / 冷启动</div>
+      <div class="card-value">2 + <span style="color:#d97706;font-size:20px">5</span></div>
+      <div class="card-sub">启动中2个 · 计划新增冷启动5个</div>
+      <div class="card-bar"><div class="fill" style="width:78%"></div></div>
+    </div>
+    <div class="card purple">
+      <div class="card-title">● 投放ROI</div>
+      <div class="card-value">0.8-1.0</div>
+      <div class="card-sub">投流部2个活跃号 · 稳定区间</div>
+      <div class="card-bar"><div class="fill" style="width:45%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div>
+    </div>
+  </div>
+</div>
+<div class="tagline-box" style="margin-bottom:24px">
+  <div class="t-icon">📢</div>
+  <div class="t-text">目前9个号均无关联亦不做垂类 · 视账号运营情况再决定是否关联是否垂类 · 人员到位后9个号同时铺量</div>
+</div>
+<div class="section" id="accounts">
+  <div class="section-header"><h2>📱 账号状态 <span class="count">9个号</span></h2></div>
+  <div class="grid-3">
+    <div class="kanban-lane">
+      <div class="lane-header"><div class="lane-title"><span style="color:#10b981">●</span> 活跃号</div><div class="lane-count">2</div></div>
+      <div class="kanban-item"><div class="ki-title">账号 A</div><div class="ki-meta"><span class="tag status-active">活跃</span><span class="tag">运营中</span></div></div>
+      <div class="kanban-item"><div class="ki-title">账号 B</div><div class="ki-meta"><span class="tag status-active">活跃</span><span class="tag">运营中</span></div></div>
+    </div>
+    <div class="kanban-lane">
+      <div class="lane-header"><div class="lane-title"><span style="color:#f59e0b">●</span> 启动中</div><div class="lane-count">2</div></div>
+      <div class="kanban-item"><div class="ki-title">账号 C</div><div class="ki-meta"><span class="tag status-warm">启动中</span></div></div>
+      <div class="kanban-item"><div class="ki-title">账号 D</div><div class="ki-meta"><span class="tag status-warm">启动中</span></div></div>
+    </div>
+    <div class="kanban-lane">
+      <div class="lane-header"><div class="lane-title"><span style="color:#94a3b8">●</span> 待启动 / 冷启动计划</div><div class="lane-count">+5</div></div>
+      <div class="kanban-item" style="border-style:dashed;opacity:.7"><div class="ki-title">冷启动账号 ①</div><div class="ki-meta"><span class="tag status-new">待启动</span></div></div>
+      <div class="kanban-item" style="border-style:dashed;opacity:.7"><div class="ki-title">冷启动账号 ②</div><div class="ki-meta"><span class="tag status-new">待启动</span></div></div>
+      <div class="kanban-item" style="border-style:dashed;opacity:.7"><div class="ki-title">冷启动账号 ③</div><div class="ki-meta"><span class="tag status-new">待启动</span></div></div>
+      <div class="kanban-item" style="border-style:dashed;opacity:.7"><div class="ki-title">冷启动账号 ④</div><div class="ki-meta"><span class="tag status-new">待启动</span></div></div>
+      <div class="kanban-item" style="border-style:dashed;opacity:.7"><div class="ki-title">冷启动账号 ⑤</div><div class="ki-meta"><span class="tag status-new">待启动</span></div></div>
+    </div>
+  </div>
+</div>
+<div class="section" id="dept">
+  <div class="section-header"><h2>🏢 部门核心指标</h2></div>
+  <div class="grid-2">
+    <div class="card" style="border-left:3px solid #2563eb">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div style="width:36px;height:36px;border-radius:10px;background:#dbeafe;display:flex;align-items:center;justify-content:center">📢</div>
+        <div><div style="font-size:14px;font-weight:700;color:#1e293b">运营部</div><div style="font-size:11px;color:#94a3b8">账号运营与管理</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><div style="font-size:10px;color:#94a3b8;font-weight:500">启动号</div><div style="font-size:24px;font-weight:900;color:#2563eb">9</div></div>
+        <div><div style="font-size:10px;color:#94a3b8;font-weight:500">活跃号</div><div style="font-size:24px;font-weight:900;color:#10b981">2</div></div>
+        <div><div style="font-size:10px;color:#94a3b8;font-weight:500">启动中</div><div style="font-size:24px;font-weight:900;color:#f59e0b">2</div></div>
+        <div><div style="font-size:10px;color:#94a3b8;font-weight:500">待冷启动</div><div style="font-size:24px;font-weight:900;color:#64748b">+5</div></div>
+      </div>
+      <div style="margin-top:12px;padding:8px 10px;background:#f8fafc;border-radius:6px;font-size:11px;color:#64748b"><span style="font-weight:600;color:#1e293b">策略：</span>9个号均无关联不做垂类 · 视运营情况再定</div>
+      <div style="margin-top:8px;padding:8px 10px;background:#f0f9ff;border-radius:6px;font-size:11px;color:#0369a1"><span style="font-weight:600">目标：</span>人员到位后9个号同时铺量</div>
+    </div>
+    <div class="card" style="border-left:3px solid #7c3aed">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div style="width:36px;height:36px;border-radius:10px;background:#ede9fe;display:flex;align-items:center;justify-content:center">🚀</div>
+        <div><div style="font-size:14px;font-weight:700;color:#1e293b">投流部</div><div style="font-size:11px;color:#94a3b8">投放与ROI管理</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><div style="font-size:10px;color:#94a3b8;font-weight:500">活跃号</div><div style="font-size:24px;font-weight:900;color:#7c3aed">2</div></div>
+        <div><div style="font-size:10px;color:#94a3b8;font-weight:500">ROI区间</div><div style="font-size:24px;font-weight:900;color:#7c3aed">0.8-1.0</div></div>
+      </div>
+      <div style="margin-top:12px">
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:#94a3b8;margin-bottom:4px"><span>ROI 表现趋势</span><span>当前区间 · 波动较小</span></div>
+        <div style="display:flex;align-items:end;gap:3px;height:40px;padding:4px 0">
+          <div style="flex:1;background:#e2e8f0;border-radius:3px 3px 0 0;height:18px"></div>
+          <div style="flex:1;background:#e2e8f0;border-radius:3px 3px 0 0;height:24px"></div>
+          <div style="flex:1;background:#c4b5fd;border-radius:3px 3px 0 0;height:30px"></div>
+          <div style="flex:1;background:#a78bfa;border-radius:3px 3px 0 0;height:34px"></div>
+          <div style="flex:1;background:#7c3aed;border-radius:3px 3px 0 0;height:38px"></div>
+          <div style="flex:1;background:#7c3aed;border-radius:3px 3px 0 0;height:36px"></div>
+          <div style="flex:1;background:#a78bfa;border-radius:3px 3px 0 0;height:32px"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:9px;color:#cbd5e1;margin-top:2px"><span>7/14</span><span>7/15</span><span>7/16</span><span>7/17</span><span>7/18</span><span>7/19</span><span>7/20</span></div>
+      </div>
+      <div style="margin-top:12px;padding:8px 10px;background:#f5f3ff;border-radius:6px;font-size:11px;color:#6d28d9"><span style="font-weight:600">状态：</span>ROI稳定在0.8-1.0，运营健康，可配合账号铺量逐步放大预算</div>
+    </div>
+  </div>
+</div>
+<div class="section" id="staffing">
+  <div class="section-header"><h2>👥 人员配置需求 <span class="count">需增 9 人</span></h2></div>
+  <div class="grid-3">
+    <div class="person-card">
+      <div class="av" style="background:#7c3aed">抽</div>
+      <div class="info"><div class="name">抽卡师</div><div class="role">AI素材生成 · 抽卡产出</div></div>
+      <div class="need high">需 +4</div>
+    </div>
+    <div class="person-card">
+      <div class="av" style="background:#0891b2">切</div>
+      <div class="info"><div class="name">切片剪辑师</div><div class="role">内容切片 · 二次创作 · 素材分发</div></div>
+      <div class="need high">需 +3</div>
+    </div>
+    <div class="person-card">
+      <div class="av" style="background:#059669">运</div>
+      <div class="info"><div class="name">运营专员</div><div class="role">账号管理 · 数据分析 · 策略调整</div></div>
+      <div class="need med">需 +2</div>
+    </div>
+  </div>
+  <div style="margin-top:14px;padding:14px 18px;background:#fff;border-radius:12px;border:1px solid #e2e8f0;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+    <span style="font-size:13px;font-weight:600;color:#1e293b">当前团队配置</span>
+    <span style="font-size:11px;color:#94a3b8">|</span>
+    <span style="font-size:11px;color:#64748b">运营部现有：</span>
+    <span style="font-size:11px;background:#f1f5f9;padding:3px 10px;border-radius:6px;color:#475569">抽卡 ? 人</span>
+    <span style="font-size:11px;background:#f1f5f9;padding:3px 10px;border-radius:6px;color:#475569">切片 ? 人</span>
+    <span style="font-size:11px;background:#f1f5f9;padding:3px 10px;border-radius:6px;color:#475569">运营 ? 人</span>
+    <div style="margin-left:auto;font-size:11px;color:#d97706;background:#fffbeb;padding:4px 12px;border-radius:6px;border:1px solid #fde68a">⚠️ 人员缺口较大，需尽快补齐实现9号同时铺量</div>
+  </div>
+</div>
+<div class="section" id="timeline">
+  <div class="section-header"><h2>📅 推进计划时间线</h2><div class="more">2026年7月末 → 8月</div></div>
+  <div class="card" style="padding:20px 24px">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="dot done"></div>
+        <div class="tl-date">7月初</div>
+        <div class="tl-title">基础账号启动</div>
+        <div class="tl-desc">9个账号完成初始注册与基础搭建</div>
+      </div>
+      <div class="timeline-item">
+        <div class="dot active"></div>
+        <div class="tl-date">7月中下旬 · 当前阶段</div>
+        <div class="tl-title">活跃号运营 + 冷启动推进</div>
+        <div class="tl-desc">2个活跃号持续运营 · 2个启动中加速 · 规划新增5个冷启动号</div>
+      </div>
+      <div class="timeline-item">
+        <div class="dot pending"></div>
+        <div class="tl-date">8月上旬</div>
+        <div class="tl-title">人员到位 + 规模启动</div>
+        <div class="tl-desc">招聘完成（+4抽卡 +3切片 +2运营）· 5个冷启动号上线 · 9个号同时铺量</div>
+      </div>
+      <div class="timeline-item">
+        <div class="dot pending"></div>
+        <div class="tl-date">8月中旬</div>
+        <div class="tl-title">数据观察期</div>
+        <div class="tl-desc">观测9个号运营数据 · 视情况决定是否关联账号 vs 做垂类</div>
+      </div>
+      <div class="timeline-item">
+        <div class="dot pending"></div>
+        <div class="tl-date">8月末</div>
+        <div class="tl-title">策略调整 + 规模化</div>
+        <div class="tl-desc">根据数据决定：关联策略 · 垂类方向 · 投放预算调整 · 下一轮扩量</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="text-align:center;padding:20px 0 10px;font-size:10px;color:#cbd5e1">运营计划看板 · 2026年7月末更新 · 基于运营部与投流部数据生成</div>
+</div>
+</body>
+</html>

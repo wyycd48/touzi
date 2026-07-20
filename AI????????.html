@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>师姐勿扰，我修无情道 - 宣发看板</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#f1f5f9}
+::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:56px;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid #e2e8f0;display:flex;align-items:center;padding:0 24px}
+.navbar .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:#1e293b;cursor:pointer;flex-shrink:0}
+.navbar .brand .icon{width:28px;height:28px;background:linear-gradient(135deg,#4f46e5,#0ea5e9);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.nav-links{display:flex;gap:2px;overflow-x:auto;margin-left:auto;scrollbar-width:none}
+.nav-links a{padding:6px 12px;border-radius:6px;font-size:12px;font-weight:500;color:#94a3b8;text-decoration:none;transition:all .2s;cursor:pointer;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:#1e293b;background:rgba(79,70,229,.1)}
+.nav-links a.active{color:#4f46e5;font-weight:600}
+.hero{background:linear-gradient(135deg,#f8fafc 0%,#eef2ff 30%,#f0f9ff 60%,#f8fafc 100%);padding:76px 24px 36px;position:relative;overflow:hidden;text-align:center}
+.hero::before{content:"";position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(79,70,229,.04),rgba(14,165,233,.03) 40%,transparent 70%);border-radius:50%}
+.hero .badge{display:inline-block;background:rgba(79,70,229,.08);color:#4f46e5;font-size:10px;font-weight:600;padding:3px 12px;border-radius:20px;letter-spacing:2px;margin-bottom:12px;border:1px solid rgba(79,70,229,.2)}
+.hero h1{font-size:30px;font-weight:900;color:#1e293b;letter-spacing:2px}
+.hero .sub{color:#64748b;font-size:13px;margin-top:8px;font-weight:300}
+.hero .tags{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:14px}
+.hero .tags span{font-size:11px;color:#94a3b8}
+.hero .tags span em{color:#1e293b;font-style:normal;font-weight:600}
+.hero-actions{margin-top:18px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.container{max-width:1400px;margin:0 auto;padding:24px 24px 60px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:28px}
+.stat-c{background:#ffffff;border:1px solid #e2e8f0;border-radius:10px;padding:18px 16px;text-align:center;position:relative;overflow:hidden}
+.stat-c::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0}
+.stat-c:nth-child(1)::before{background:#4f46e5}
+.stat-c:nth-child(2)::before{background:#0ea5e9}
+.stat-c:nth-child(3)::before{background:#10b981}
+.stat-c:nth-child(4)::before{background:#f59e0b}
+.stat-c:nth-child(5)::before{background:#3b82f6}
+.stat-c .num{font-size:28px;font-weight:900;color:#1e293b}
+.stat-c .lbl{font-size:11px;color:#94a3b8;margin-top:4px;font-weight:500}
+.sec-title{font-size:17px;font-weight:700;color:#1e293b;margin:36px 0 16px;padding-bottom:10px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:10px}
+.sec-title .b{background:rgba(79,70,229,.08);color:#4f46e5;font-size:10px;font-weight:600;padding:2px 10px;border-radius:8px;border:1px solid rgba(79,70,229,.15)}
+.tw{overflow-x:auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:600px}
+th{background:#f8fafc;color:#64748b;padding:10px 12px;font-weight:500;text-align:left;white-space:nowrap;font-size:10.5px;letter-spacing:.6px;border-bottom:1px solid #e2e8f0}
+td{padding:9px 12px;border-bottom:1px solid #f1f5f9;vertical-align:middle;color:#475569}
+thead tr:first-child th:first-child{border-radius:10px 0 0 0}
+thead tr:first-child th:last-child{border-radius:0 10px 0 0}
+tbody tr:hover{background:#eef2ff!important}
+tbody tr:nth-child(even){background:#f8fafc}
+.sb{display:inline-flex;align-items:center;gap:4px;padding:2px 10px;border-radius:8px;font-size:10.5px;font-weight:600;white-space:nowrap}
+.sb.done{background:#ecfdf5;color:#10b981}
+.sb.go{background:#fffbeb;color:#f59e0b}
+.sb.plan{background:#eff6ff;color:#3b82f6}
+.sb.wait{background:#f1f5f9;color:#94a3b8}
+.sb .sd{width:4px;height:4px;border-radius:50%;display:inline-block}
+.sb.done .sd{background:#10b981}
+.sb.go .sd{background:#f59e0b;animation:blink 1s ease-in-out infinite}
+.sb.plan .sd{background:#3b82f6}
+.sb.wait .sd{background:#94a3b8}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.pbw{width:100%;height:5px;background:#f1f5f9;border-radius:3px;overflow:hidden;min-width:60px}
+.pbf{height:100%;border-radius:3px;transition:width .6s ease}
+.pbf.gold{background:linear-gradient(90deg,#4f46e5,#0ea5e9)}
+.pbf.blue{background:linear-gradient(90deg,#3b82f6,#60a5fa)}
+.pbf.orange{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
+.pbf.red{background:linear-gradient(90deg,#ef4444,#f87171)}
+.pcell{display:flex;align-items:center;gap:8px}
+.ptxt{font-size:10px;font-weight:600;min-width:28px;text-align:right;color:#94a3b8}
+.ch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:20px}
+.ch-c{background:#ffffff;border:1px solid #e2e8f0;border-radius:10px;padding:16px;transition:all .2s}
+.ch-c:hover{border-color:rgba(79,70,229,.2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.ch-h{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ch-h .ci{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ch-h .cn{font-size:13px;font-weight:700;color:#1e293b}
+.ch-h .cs{margin-left:auto;font-size:9px;padding:2px 8px;border-radius:6px;font-weight:600}
+.ch-h .cs.cnt{background:#eef2ff;color:#4f46e5}
+.ch-it{display:flex;flex-wrap:wrap;gap:4px}
+.ch-it .it{padding:3px 8px;border-radius:5px;font-size:10px;background:#f8fafc;color:#94a3b8;display:flex;align-items:center;gap:4px}
+.ch-it .it.done{background:#ecfdf5;color:#10b981}
+.ch-it .it.go{background:#fffbeb;color:#f59e0b}
+.ch-it .it.plan{background:#eff6ff;color:#3b82f6}
+.kol-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:20px}
+.kol-c{background:#ffffff;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:center;transition:all .2s}
+.kol-c:hover{border-color:rgba(79,70,229,.2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.kol-c .av{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,rgba(79,70,229,.12),rgba(14,165,233,.12));display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#4f46e5}
+.kol-c .ki{flex:1}
+.kol-c .ki .n{font-size:12.5px;font-weight:700;color:#1e293b}
+.kol-c .ki .p{font-size:10px;color:#94a3b8;margin-top:1px}
+.kol-c .ki .d{font-size:10.5px;color:#64748b;margin-top:3px}
+.kol-c .kr{text-align:right;flex-shrink:0}
+.kol-c .kr .f{font-size:12px;font-weight:700;color:#4f46e5}
+.kol-c .kr .dt{font-size:9px;color:#94a3b8;margin-top:1px}
+.kol-c .kr .st{margin-top:4px}
+.ms{position:relative;padding:16px 0 8px;margin-bottom:20px}
+.ms::before{content:"";position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,rgba(79,70,229,.2),rgba(14,165,233,.2),rgba(59,130,246,.2))}
+.ms-i{display:flex;gap:16px;padding:14px 0;padding-left:0}
+.ms-i .md{position:relative;z-index:2;width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:3px;border:3px solid #ffffff;margin-left:14px}
+.ms-i .md.gold{background:#4f46e5}
+.ms-i .md.red{background:#0ea5e9}
+.ms-i .md.blue{background:#3b82f6}
+.ms-i .md.green{background:#10b981}
+.ms-i .md.purple{background:#8b5cf6}
+.ms-i .mc{flex:1}
+.ms-i .mc .mt{font-size:13.5px;font-weight:700;color:#1e293b}
+.ms-i .mc .md2{font-size:10px;color:#94a3b8;margin-top:1px}
+.ms-i .mc .mdesc{font-size:11px;color:#64748b;margin-top:3px}
+.ms-i .mc .mst{margin-top:4px}
+.budget .amt{font-weight:700}
+.budget .amt.gold{color:#4f46e5}
+.budget .amt.red{color:#ef4444}
+.budget .amt.green{color:#10b981}
+.m-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:24px}
+.m-c{background:#ffffff;border:1px solid #e2e8f0;border-radius:10px;padding:16px;text-align:center}
+.m-c .mi{font-size:22px;margin-bottom:6px}
+.m-c .mv{font-size:24px;font-weight:900;color:#1e293b}
+.m-c .mv.gold{color:#4f46e5}
+.m-c .ml{font-size:10px;color:#94a3b8;margin-top:4px;font-weight:500}
+@media(max-width:768px){.navbar{padding:0 12px}.navbar .brand span{display:none}.hero h1{font-size:22px}.container{padding:12px}.stats{grid-template-columns:repeat(3,1fr)}.ch-grid,.kol-grid{grid-template-columns:1fr}.m-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.stats{grid-template-columns:repeat(2,1fr)}.m-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<div class="brand"><div class="icon">🎬</div><span>宣发看板</span></div>
+<div class="nav-links" id="navLinks"></div>
+</nav>
+<header class="hero">
+<div class="badge">✦ PROMOTION DASHBOARD</div>
+<h1>师姐勿扰，我修无情道的</h1>
+<p class="sub">AI动画 · 都市玄幻 · 全渠道宣发进度追踪</p>
+<div class="tags">
+<span>🏢 <em>小驴快跑</em></span>
+<span>📡 <em>红果</em></span>
+<span>📅 <em>待定首播</em></span>
+</div>
+<div class="hero-actions">
+<button class="edit-btn" onclick="toggleEdit()" style="background:linear-gradient(135deg,#4f46e5,#0ea5e9);color:#fff">✏ 编辑数据</button>
+<button class="edit-btn" onclick="location.reload()" style="background:transparent;color:#4f46e5;border:1.5px solid #4f46e5;box-shadow:none">↻ 刷新页面</button>
+</div>
+</header>
+<div class="container" id="container"></div>
+<style>
+.edit-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;border:none;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 2px 8px rgba(79,70,229,.15);transition:all .2s;font-family:"Noto Sans SC","Microsoft YaHei",sans-serif}
+.edit-btn:hover{transform:scale(1.04)}
+</style>
+<script>
+var DATA = {"项目概览": [["AI短剧宣发项目概览", "", "", "", "", ""], ["Promotion Dashboard · AI Short Drama", "", "", "", "", ""], ["  基本信息", "", "", "", "", ""], ["项目名称", "师姐勿扰，我修无情道的", "项目类型", "AI动画 · 都市玄幻", "", ""], ["出品方", "小驴快跑", "播出平台", "红果", "", ""], ["首播日期", "待定", "更新周期", "完结上线", "", ""], ["总集数", "", "宣传负责人", "宣发组", "", ""], ["项目状态", "宣发进行中", "当前阶段", "制作期", "", ""], ["  核心指标", "", "", "", "", ""], [0.2, "", "12项", "", "2个", ""], ["总进度", "", "已完成物料", "", "活跃渠道", ""], ["  宣传阶段状态", "", "", "", "", ""], ["阶段", "时间范围", "关键事项", "进度", "状态", "负责人"], ["预热期", "07/16-07/25", "概念故事·先导预告·话题预热", 0.3, "进行中", "宣发组"], ["定档期", "待定", "定档海报·发布会·媒体通稿", "0", "待启动", "宣发组"], ["上映期", "待定", "首映礼·正片上线·追剧日历", "0", "待启动", "宣发组"], ["热播期", "待定", "花絮特辑·话题运营·二创活动", "0%", "待启动", "运营组"], ["收官期", "待定", "收官海报·数据总结·感谢特辑", "0%", "待启动", "宣发组"]], "宣传物料进度": [["AI短剧宣发 · 宣传物料进度表", "", "", "", "", "", "", ""], ["序号", "物料名称", "类型", "负责人", "计划完成", "实际完成", "进度(%)", "状态"], ["1", "概念海报", "海报", "设计组", "2026-07-20", "2026-07-18", "100", "已完成"], ["2", "角色海报（全套）", "海报", "设计组", "2026-08-01", "2026-07-28", "100", "已完成"], ["3", "正式定档海报", "海报", "设计组", "2026-08-05", "", "60", "已完成"], ["4", "倒计时海报×7", "海报", "设计组", "2026-08-08", "", "20", "已完成"], ["5", "先导预告片", "预告片", "剪辑组", "2026-07-25", "2026-07-22", "100", "已完成"], ["6", "定档预告片", "预告片", "剪辑组", "2026-08-05", "", "45", "已完成"], ["7", "终极预告片", "预告片", "剪辑组", "2026-08-12", "", "10", "已完成"], ["8", "剧照×20张", "剧照", "摄影组", "2026-07-30", "2026-07-26", "100", "已完成"], ["9", "幕后花絮×3", "花絮", "剪辑组", "2026-08-10", "", "30", "已完成"], ["10", "角色特辑×3", "特辑", "文案组", "2026-08-15", "", "0", "已完成"], ["11", "主题曲MV", "音乐", "音乐组", "2026-08-08", "", "无", "进行中"], ["12", "收官感谢视频", "视频", "剪辑组", "2026-09-10", "", "无", "进行中"], ["  统计", "", "", "", "", "", "", ""], ["=COUNTA(B3:B14)", "", "=COUNTIF(H3:H14,\"已完成\")", "", "=COUNTIF(H3:H14,\"进行中\")", "", "=AVERAGE(G3:G14)", ""], ["总物料数", "", "已完成", "", "进行中", "", "平均进度", ""]], "渠道投放计划": [["AI短剧宣发 · 渠道投放计划表", "", "", "", "", "", "", ""], ["序号", "渠道名称", "发布内容", "计划时间", "目标人群", "预算(元)", "实际成本", "状态"], ["1", "微博", "定档海报+话题热搜+抽奖活动", "未规划", "泛动漫用户", "0", "0", "待启动"], ["2", "微博", "KOL转发测评×5", "未规划", "国漫爱好者", "0", "0", "待启动"], ["3", "抖音", "官方账号+达人合作×8", "未规划", "年轻用户18-30", "0", "0", "待启动"], ["4", "抖音", "信息流广告投放", "待定", "精准兴趣人群", "50000", "0", "规划中"], ["5", "小红书", "品牌账号+影视种草", "未规划", "女性用户20-28", "0", "0", "待启动"], ["6", "小红书", "KOC铺量×20篇", "未规划", "动漫同好圈层", "0", "0", "待启动"], ["7", "B站", "官方号运营+专栏推广", "未规划", "核心二次元", "0", "0", "待启动"], ["8", "B站", "UP主合作×6位", "未规划", "分区粉丝", "0", "0", "待启动"], ["9", "微信", "公众号推文×3+视频号", "未规划", "行业媒体+社群", "0", "0", "规划中"], ["10", "微信", "朋友圈广告投放", "未规划", "社交关系链传播", "15000", "0", "规划中"], ["11", "", "", "", "", "0", "0", "待启动"], ["12", "快手", "视频号宣发", "未规划", "下沉市场用户", "0", "0", "待启动"], ["预算合计", "", "", "", "", "=SUM(F3:F14)", "=SUM(G3:G14)", ""]], "KOL合作清单": [["AI短剧宣发 · KOL/达人合作清单", "", "", "", "", "", "", ""], ["序号", "KOL名称", "平台", "粉丝数", "合作内容", "合作费用", "合作日期", "状态"], ["1", "动漫情报局", "B站", "42万", "首映合作·安利视频", "¥8,000", "08/10", "规划中"], ["2", "影视挖掘机", "微博", "68万", "预告片转发·抽奖联动", "¥12,000", "08/05", "规划中"], ["3", "追番小能手", "B站", "25万", "一集鉴番·深度安利", "¥6,000", "08/18", "规划中"], ["4", "阿花说动画", "小红书", "15万", "图文种草·角色安利", "¥4,000", "08/12", "规划中"], ["5", "老张聊国漫", "抖音", "55万", "直播连麦·短视频合作", "¥15,000", "08/20", "进行中"], ["6", "次元周刊", "公众号", "10万", "专访报道·开播预热", "¥3,000", "08/08", "规划中"], ["7", "小鹿放映厅", "抖音", "35万", "片段解说·观后感", "¥7,000", "08/25", "规划中"], ["8", "国漫新势力", "微博", "22万", "海报转发·话题共创", "¥5,000", "08/02", "规划中"]], "宣传时间线": [["AI短剧宣发 · 宣传时间线", "", "", "", "", "", ""], ["序号", "开始日期", "结束日期", "阶段名称", "关键事项/交付物", "负责人", "状态"], ["1", "2026-07-01", "2026-07-25", "预热期", "概念海报·先导预告·话题预热", "设计组+宣发组", "已完成"], ["2", "2026-07-22", "2026-08-05", "定档期", "定档海报·定档预告·发布会·媒体通稿", "宣发组", "进行中"], ["3", "2026-08-01", "2026-08-18", "上映期", "首映礼·正片上线·追剧日历·弹幕活动", "宣发组+运营组", "进行中"], ["4", "2026-08-12", "2026-08-30", "热播期", "花絮特辑·角色话题·二创大赛·KOL第二波", "运营组", "待启动"], ["5", "2026-08-25", "2026-09-10", "收官期", "收官海报·数据战报·感谢特辑·复盘", "宣发组", "待启动"]], "预算跟踪": [["AI短剧宣发 · 预算跟踪表", "", "", "", "", ""], ["序号", "预算科目", "预算金额(元)", "已用金额(元)", "剩余金额(元)", "使用率"], ["1", "物料制作（海报/预告/剧照）", "待定", "待定", "待定", "=IF(C3>0,D3/C3,0)"], ["2", "KOL/达人合作", "待定", "待定", "待定", "=IF(C4>0,D4/C4,0)"], ["3", "信息流广告投放", "待定", "待定", "待定", "=IF(C5>0,D5/C5,0)"], ["4", "线下活动（发布会/首映礼）", "待定", "待定", "待定", "=IF(C6>0,D6/C6,0)"], ["5", "平台推广合作", "待定", "待定", "=C7-D7", "=IF(C7>0,D7/C7,0)"], ["6", "周边及衍生品", "待定", "待定", "待定", "=IF(C8>0,D8/C8,0)"], ["合计", "", "=SUM(C3:C8)", "=SUM(D3:D8)", "待定", "=IF(C9>0,D9/C9,0)"]], "数据指标": [["AI短剧宣发 · 宣传数据指标", "", "", "", "", ""], ["序号", "指标名称", "当前值", "目标值", "完成率", "趋势"], ["1", "话题总阅读量", "未进行宣传", "20万", "0", ""], ["2", "讨论互动量", "未进行宣传", "15万", "0", ""], ["3", "官微粉丝数", "未进行宣传", "5万", "0", ""], ["4", "微博热搜次数", "未进行宣传", "未进行", "0", ""], ["5", "预告片播放量", "未进行宣传", "8万", "0", ""], ["6", "KOL合作曝光", "未进行宣传", "未进行", "0", ""], ["7", "品牌认知度", "进行中", 0.4, 0.2, ""], ["8", "正片播放量", "0", "300万", "0", "待上线"]]};
+
+function safe(v, fb) { return (v===null||v===undefined||v==="") ? (fb||"") : v; }
+function sc(s) {
+  if(!s) return "wait";
+  if(s==="已完成") return "done";
+  if(s==="进行中") return "go";
+  if(s==="规划中") return "plan";
+  return "wait";
+}
+function st(s) { return s||"待启动"; }
+function bc(p) {
+  var n = parseInt(p);
+  if(isNaN(n)) return "gold";
+  if(n>=80) return "gold";
+  if(n>=50) return "blue";
+  if(n>=20) return "orange";
+  return "red";
+}
+
+function render() {
+  var nav = document.getElementById("navLinks");
+  var con = document.getElementById("container");
+  nav.innerHTML = '<a class="active" data-s="overview">概览</a><a data-s="materials">物料</a><a data-s="channels">渠道</a><a data-s="kol">KOL</a><a data-s="timeline">时间线</a><a data-s="budget">预算</a><a data-s="metrics">数据</a>';
+
+  var OV = DATA["项目概览"]||[];
+  var MS = DATA["宣传物料进度"]||[];
+  var CS = DATA["渠道投放计划"]||[];
+  var KS = DATA["KOL合作清单"]||[];
+  var TL = DATA["宣传时间线"]||[];
+  var BG = DATA["预算跟踪"]||[];
+  var MT = DATA["数据指标"]||[];
+
+  var h = "";
+
+  h += '<div class="stats" id="overview">';
+  h += '<div class="stat-c"><div class="num">20%</div><div class="lbl">总进度</div></div>';
+  h += '<div class="stat-c"><div class="num">10项</div><div class="lbl">已完成物料</div></div>';
+  h += '<div class="stat-c"><div class="num">2个</div><div class="lbl">活跃渠道</div></div>';
+  h += '<div class="stat-c"><div class="num">'+(KS.length-3)+'</div><div class="lbl">KOL合作</div></div>';
+  h += '<div class="stat-c"><div class="num">制作期</div><div class="lbl">当前阶段</div></div></div>';
+
+  // Materials
+  h += '<div class="sec-title" id="materials">📦 宣传物料 <span class="b">'+(MS.length-3)+'项</span></div>';
+  h += '<div class="tw"><table><thead><tr>';
+  var mh = MS[1];
+  if(mh) { for(var i=0;i<mh.length;i++) h+="<th>"+(mh[i]||"")+"</th>"; }
+  h += '</tr></thead><tbody>';
+  for(var i=2;i<MS.length;i++) {
+    var r = MS[i];
+    if(!r||!r[0]||String(r[0]).indexOf("=")===0||String(r[0]).trim().indexOf(" ")===0||String(r[0]).trim()==="") continue;
+    h += "<tr>";
+    for(var j=0;j<r.length;j++) {
+      var v = r[j];
+      if(j===7) { var c = sc(v); h += '<td><span class="sb '+c+'"><span class="sd"></span>'+st(v)+'</span></td>'; }
+      else if(j===6) {
+        var p = parseInt(v); if(isNaN(p)) p=0;
+        h += '<td><div class="pcell"><div class="pbw"><div class="pbf '+bc(p)+'" style="width:'+p+'%"></div></div><span class="ptxt">'+p+'%</span></div></td>';
+      } else if(j===0) { h += '<td style="color:#cbd5e1">'+(v||"")+'</td>'; }
+      else { h += '<td>'+(v||"")+'</td>'; }
+    }
+    h += "</tr>";
+  }
+  h += '</tbody></table></div>';
+
+  // Channels
+  h += '<div class="sec-title" id="channels">📡 渠道投放 <span class="b">5渠道</span></div><div class="ch-grid">';
+  var chMap = {};
+  var chIcons = {"微博":"🔴","抖音":"🎵","小红书":"📕","B站":"📺","微信":"💬"};
+  for(var i=2;i<CS.length;i++) {
+    var r = CS[i];
+    if(!r||!r[1]||String(r[0]).indexOf("预")===0) continue;
+    var nm = r[1];
+    if(!chMap[nm]) chMap[nm] = {name:nm, items:[]};
+    chMap[nm].items.push({label:r[2]||"", time:r[3]||"", target:r[4]||"", budget:r[5]||"0", status:r[7]||"待启动"});
+  }
+  for(var k in chMap) {
+    var ch = chMap[k];
+    var total = ch.items.length, done = 0;
+    for(var ii=0;ii<ch.items.length;ii++) { if(ch.items[ii].status==="已完成"||ch.items[ii].status==="active") done++; }
+    h += '<div class="ch-c"><div class="ch-h"><div class="ci" style="background:#f8fafc">'+(chIcons[ch.name]||"📡")+'</div><div class="cn">'+ch.name+'</div><div class="cs cnt">'+done+"/"+total+'</div></div><div class="ch-it">';
+    for(var ii=0;ii<ch.items.length;ii++) {
+      var it = ch.items[ii];
+      var cls = "wait";
+      if(it.status==="已完成"||it.status==="active") cls="done";
+      else if(it.status==="规划中"||it.status==="plan") cls="plan";
+      h += '<span class="it '+cls+'">'+(it.label||it.time||"")+'</span>';
+    }
+    h += '</div></div>';
+  }
+  h += '</div>';
+
+  // KOL
+  h += '<div class="sec-title" id="kol">🤝 KOL合作 <span class="b">'+(KS.length-3)+'位</span></div><div class="kol-grid">';
+  for(var i=2;i<KS.length;i++) {
+    var r = KS[i];
+    if(!r||!r[1]||String(r[0]).indexOf("=")===0) continue;
+    var av = (r[1]||"K").charAt(1)||"K";
+    h += '<div class="kol-c"><div class="av">'+av+'</div><div class="ki"><div class="n">'+(r[1]||"")+'</div><div class="p">'+(r[2]||"")+' · '+(r[3]||"")+'</div><div class="d">'+(r[4]||"")+'</div></div><div class="kr"><div class="f">'+(r[5]||"")+'</div><div class="dt">'+(r[6]||"")+'</div><div class="st"><span class="sb '+sc(r[7])+'"><span class="sd"></span>'+st(r[7])+'</span></div></div></div>';
+  }
+  h += '</div>';
+
+  // Timeline
+  h += '<div class="sec-title" id="timeline">📅 宣传时间线</div><div class="ms">';
+  var tlColors = ["gold","red","blue","green","purple"];
+  for(var i=2;i<TL.length;i++) {
+    var r = TL[i];
+    if(!r||!r[3]) continue;
+    h += '<div class="ms-i"><div class="md '+tlColors[i-2]+'"></div><div class="mc"><div class="mt">'+(r[3]||"")+'</div><div class="md2">'+(r[1]||"")+' → '+(r[2]||"")+'</div><div class="mdesc">'+(r[4]||"")+'</div><div class="mst"><span class="sb '+sc(r[6])+'"><span class="sd"></span>'+st(r[6])+'</span></div></div></div>';
+  }
+  h += '</div>';
+
+  // Budget
+  h += '<div class="sec-title" id="budget">💰 预算跟踪</div><div class="tw"><table class="budget"><thead><tr>';
+  var bh = BG[1];
+  if(bh) { for(var i=0;i<bh.length;i++) h+="<th>"+(bh[i]||"")+"</th>"; }
+  h += '</tr></thead><tbody>';
+  for(var i=2;i<BG.length;i++) {
+    var r = BG[i];
+    if(!r||!r[0]) continue;
+    var isTotal = String(r[0]).indexOf("合计")>=0;
+    if(isTotal) h += '<tr style="background:#eef2ff!important">'; else h += '<tr>';
+    for(var j=0;j<Math.min(r.length,6);j++) {
+      var v = r[j], cls = "";
+      if(j===0) cls = "color:#cbd5e1";
+      else if(j===1) cls = "font-weight:600;color:#1e293b";
+      else if(j===2||j===3) cls = "font-weight:700;color:#4f46e5";
+      else if(j===4) cls = "font-weight:700;color:#10b981";
+      else if(j===5) cls = "font-weight:700;color:#4f46e5";
+      var disp = (v===null||v==="") ? "待定" : v;
+      h += '<td style="'+cls+'">'+disp+'</td>';
+    }
+    h += '</tr>';
+  }
+  h += '</tbody></table></div>';
+
+  // Metrics
+  h += '<div class="sec-title" id="metrics">📊 数据指标 <span class="b">实时</span></div><div class="m-grid">';
+  var mIcons = ["🔥","💬","👥","📱","▶️","📈","🏆","🎯"];
+  for(var i=2;i<MT.length;i++) {
+    var r = MT[i];
+    if(!r||!r[1]) continue;
+    h += '<div class="m-c"><div class="mi">'+(mIcons[i-2]||"📊")+'</div><div class="mv gold">'+(r[2]||"0")+'</div><div class="ml">'+(r[1]||"")+'</div><div style="font-size:9px;color:#cbd5e1;margin-top:4px">目标: '+(r[3]||"—")+'</div></div>';
+  }
+  h += '</div>';
+  con.innerHTML = h;
+
+  var sections = ["overview","materials","channels","kol","timeline","budget","metrics"];
+  var links = document.querySelectorAll(".nav-links a");
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if(e.isIntersecting) {
+        var id = e.target.id;
+        links.forEach(function(l) { l.classList.toggle("active", l.dataset.s===id); });
+      }
+    });
+  }, {threshold:0.15});
+  sections.forEach(function(id) { var el=document.getElementById(id); if(el) obs.observe(el); });
+  links.forEach(function(l) {
+    l.addEventListener("click", function() {
+      var el = document.getElementById(l.dataset.s);
+      if(el) el.scrollIntoView({behavior:"smooth"});
+    });
+  });
+}
+
+var editMode = false;
+function toggleEdit() {
+  editMode = !editMode;
+  var btn = document.querySelector(".edit-btn");
+  if(btn) btn.textContent = editMode ? "🔒 退出编辑" : "✏ 编辑数据";
+}
+
+document.addEventListener("DOMContentLoaded", render);
+</script>
+</body>
+</html>
